@@ -12,11 +12,19 @@
 }
 
 .board {
+  border: 10px solid rgb(248, 243, 195);
   width: calc(64px * 8);
   height: calc(64px * 8);
   display: flex;
   flex-wrap: wrap;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  transform: perspective(800px) rotateX(60deg);
 }
+
+/* .board:hover {
+  transform: perspective(800px) rotateX(60deg) rotateZ(180deg);
+} */
 
 .cell {
   width: 64px;
@@ -26,10 +34,16 @@
   align-items: center;
 }
 
+.cell img {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+
 .black {
-  background-color: deepskyblue;
+  background-color: rgb(136, 136, 136);
 }
 
 .white {
-  background-color: #eed4ac;
+  background-color: #f1dcbb;
 }
