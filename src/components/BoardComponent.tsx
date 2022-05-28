@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Board } from "../models/Board";
 import { Cell } from "../models/Cell";
+import { Colors } from "../models/Color";
 import { Player } from "../models/Player";
 import CellComponent from "./CellComponent";
 
@@ -9,6 +10,7 @@ interface BoardProps {
   setBoard: (board: Board) => void;
   currentPlayer: Player;
   swapPlayer: () => void;
+  turnBoard: boolean;
 }
 
 const BoardComponent: React.FC<BoardProps> = ({
@@ -16,6 +18,7 @@ const BoardComponent: React.FC<BoardProps> = ({
   setBoard,
   currentPlayer,
   swapPlayer,
+  turnBoard,
 }) => {
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
@@ -51,27 +54,28 @@ const BoardComponent: React.FC<BoardProps> = ({
   }
 
   return (
-    <div className="board">
-      {board.cells.map((row, index) =>
-        row.map((cell, index) => (
-          <CellComponent
-            click={click}
-            key={cell.id}
-            cell={cell}
-            selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
-          />
-        ))
-      )}
+    <div>
+      <h3>
+        Current player:{" "}
+        {currentPlayer.color === Colors.WHITE ? "White" : "Black"}
+      </h3>
+      <div className={["board", turnBoard ? "turnBoard" : ""].join(" ")}>
+        {board.cells.map((row, index) =>
+          row.map((cell, index) => (
+            <CellComponent
+              click={click}
+              key={cell.id}
+              cell={cell}
+              turnBoard={turnBoard}
+              selected={
+                cell.x === selectedCell?.x && cell.y === selectedCell?.y
+              }
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 };
-
-// {board.cells.map((row, index) => {
-//         <React.Fragment key={index}>
-//           {row.map((cell) => {
-//             <CellComponent />;
-//           })}
-//         </React.Fragment>;
-//       })}
 
 export default BoardComponent;

@@ -26,9 +26,9 @@ body {
   transform: perspective(800px) rotateX(60deg);
 }
 
-/* .board:hover {
+.turnBoard {
   transform: perspective(800px) rotateX(60deg) rotateZ(180deg);
-} */
+}
 
 .cell {
   width: 64px;
@@ -42,6 +42,10 @@ body {
   width: 48px;
   height: 48px;
   position: relative;
+}
+
+.turnImg {
+  transform: rotateX(180deg);
 }
 
 .black {
@@ -61,4 +65,35 @@ body {
   width: 12px;
   border-radius: 50%;
   background-color: green;
+}
+
+.lost {
+  height: calc(50vh - 60px);
+  width: 50%;
+  padding: 30px;
+  background-color: lightgray;
+  text-align: center;
+}
+
+.lostWhiteFigures {
+  margin-right: 100px;
+}
+
+.lostBlackFigures {
+  margin-left: 150px;
+}
+
+.timer {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  text-align: center;
+}
+
+.timer button {
+  padding: 0.2rem;
+  margin-bottom: 10px;
+  border-radius: 0.5rem;
+  background-color: rgb(1, 124, 21);
+  box-shadow: 2px;
 }
